@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Analyst — Promotion Summary</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background: #f7f5fc;
+            color: #1a1a1a;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        main {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 80px 28px 120px;
+        }
+
+        /* ── header ── */
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .role-tag {
+            display: inline-block;
+            background: #ede9f8;
+            color: #7b6db8;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: #1a1a1a;
+        }
+
+        /* ── pull quote ── */
+        .pull-quote {
+            position: relative;
+            background: #ede9f8;
+            border-radius: 16px;
+            padding: 36px 40px 30px;
+            margin-bottom: 56px;
+        }
+
+        .pull-quote::before {
+            content: "\201C";
+            position: absolute;
+            top: 8px;
+            left: 26px;
+            font-size: 5.5rem;
+            line-height: 1;
+            color: #c4b8e8;
+            font-family: Georgia, serif;
+        }
+
+        .pull-quote p {
+            font-size: 1rem;
+            font-style: italic;
+            line-height: 1.65;
+            color: #2a2233;
+            padding-top: 20px;
+        }
+
+        .pull-quote .attrib {
+            display: block;
+            font-style: normal;
+            font-size: 0.78rem;
+            color: #7b6db8;
+            font-weight: 600;
+            margin-top: 16px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── intro ── */
+        .intro {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: #444;
+            margin-bottom: 56px;
+            text-align: center;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ── stats strip ── */
+        .stats {
+            display: flex;
+            border: 1px solid #e0daf0;
+            border-radius: 16px;
+            background: white;
+            overflow: hidden;
+            margin-bottom: 64px;
+        }
+
+        .stat {
+            flex: 1;
+            padding: 28px 18px;
+            text-align: center;
+            border-right: 1px solid #e0daf0;
+        }
+
+        .stat:last-child { border-right: none; }
+
+        .stat .val {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #8b7dc8;
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+
+        .stat .label {
+            font-size: 0.72rem;
+            color: #999;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        /* ── section heading ── */
+        .section-heading {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: #8b7dc8;
+            margin-bottom: 20px;
+        }
+
+        /* ── bento grid ── */
+        .bento {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 64px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e4dff2;
+            border-radius: 16px;
+            padding: 28px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card.wide {
+            grid-column: span 2;
+        }
+
+        .card .card-tag {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #b8aadf;
+            margin-bottom: 10px;
+        }
+
+        .card .card-title {
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            line-height: 1.35;
+        }
+
+        .card .card-desc {
+            font-size: 0.91rem;
+            color: #555;
+            line-height: 1.65;
+            flex: 1;
+        }
+
+        /* ── how I work ── */
+        .work-list {
+            background: white;
+            border: 1px solid #e4dff2;
+            border-radius: 16px;
+            padding: 8px 0;
+            margin-bottom: 64px;
+        }
+
+        .work-item {
+            display: flex;
+            gap: 20px;
+            padding: 22px 30px;
+            border-bottom: 1px solid #f0edf8;
+            align-items: flex-start;
+        }
+
+        .work-item:last-child { border-bottom: none; }
+
+        .work-num {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #c4b8e8;
+            flex-shrink: 0;
+            padding-top: 2px;
+            width: 20px;
+        }
+
+        .work-text {
+            font-size: 0.94rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .work-text strong {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        /* ── what's next ── */
+        .next-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 0;
+        }
+
+        .next-card {
+            background: #ede9f8;
+            border-radius: 16px;
+            padding: 28px 30px;
+        }
+
+        .next-card .next-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #4a3d7a;
+            margin-bottom: 8px;
+        }
+
+        .next-card .next-desc {
+            font-size: 0.88rem;
+            color: #5a4e8a;
+            line-height: 1.6;
+        }
+
+        /* ── footer ── */
+        footer {
+            margin-top: 72px;
+            text-align: center;
+            color: #ccc;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 620px) {
+            main { padding: 52px 18px 80px; }
+            header h1 { font-size: 2.2rem; }
+            .bento { grid-template-columns: 1fr; }
+            .card.wide { grid-column: span 1; }
+            .next-grid { grid-template-columns: 1fr; }
+            .stats { flex-wrap: wrap; }
+            .stat { flex: 1 1 30%; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <div class="role-tag">Promotion Case · Bruna Rodrigues</div>
+            <h1>Learning Analyst</h1>
+        </header>
+
+        <div class="pull-quote">
+            <p>This shoutout is long overdue, but our Academics DRI, Bruna Rodrigues, is truly an unparalleled force. Her contribution to Alpha Miami is immeasurable. From booking coaching calls whenever possible, to messaging back and forth with high schoolers as they troubleshoot app and tech issues, to partnering with me on highly individualized academic plans — she never stops. And somehow, she answers messages immediately. I genuinely think she has a twin somewhere helping her divide and conquer. Bruna is incredibly analytical and data-driven, and she cares deeply about the kids. The fact that students specifically request her for coaching calls says everything. I know I speak for the entire Miami team when I say we are eternally grateful for you, Bruna.</p>
+            <span class="attrib">— Joshua Lezmi, Miami Lead Guide (unprompted)</span>
+        </div>
+
+        <p class="intro">Academic operations depend on real-time data, intervention tooling, and reporting infrastructure. In the last six months, I built all three from scratch — a production platform serving 12+ schools and 1,500+ students, a summer camp system with zero prior infrastructure, and AI-powered reporting pipelines that didn't exist anywhere at Alpha.</p>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="val">12+</div>
+                <div class="label">schools in production</div>
+            </div>
+            <div class="stat">
+                <div class="val">1,500+</div>
+                <div class="label">students tracked</div>
+            </div>
+            <div class="stat">
+                <div class="val">1,400+</div>
+                <div class="label">commits shipped</div>
+            </div>
+            <div class="stat">
+                <div class="val">14</div>
+                <div class="label">reports instantly available per school</div>
+            </div>
+        </div>
+
+        <p class="section-heading">Delivered</p>
+        <div class="bento">
+            <div class="card wide">
+                <div class="card-tag">Platform</div>
+                <div class="card-title">TimeBack Dashboard — built from a single commit to a production platform</div>
+                <div class="card-desc">FastAPI + React 19 + TypeScript + Tailwind v4, deployed on Railway via Docker with CI/CD through GitHub Actions. Tracks XP, time, accuracy, tests, and grade-level progress per student per subject across 12+ schools. Role-based access spans guide views, admin views, cross-school composite roles, and doom viewer roles. Fourteen PDF endpoints cover full student reports, daily alerts, doom loop PDFs, weekly summaries, and MAP results. Features include Grade Progress History, a Notes tab, a Messaging tab with Slack DM and PDF preview-and-send, context-aware empty states across all tabs, a CSV export endpoint, and a public Reporting API with full documentation.</div>
+            </div>
+
+            <div class="card">
+                <div class="card-tag">Summer Camp</div>
+                <div class="card-title">Miami Summer Camp — zero to production</div>
+                <div class="card-desc">Built end-to-end with no prior infrastructure, in parallel with ongoing operations across all other schools. Introduced a different structure from anything that existed at Alpha before — week picker for guides, Test Tracker with per-row Google Sheets integration, bulk ZIP download of all guide XP reports, and individual student achievement PDFs at end-of-camp. Doom loop detection scoped to the summer period to prevent false positives from the prior school year.</div>
+            </div>
+
+            <div class="card">
+                <div class="card-tag">Summer Camp</div>
+                <div class="card-title">Public School Summer Camp — 508 students, zero prior infrastructure</div>
+                <div class="card-desc">Onboarded a cohort of 508 public school students — the largest single cohort ever tracked. Built on top of the Miami Summer Camp infrastructure, extending it to a completely separate school with its own data mapping, CSV-based access, and reporting. Achievement PDFs delivered to parents at scale with a level of personalisation that had not previously been attempted at Alpha.</div>
+            </div>
+
+            <div class="card">
+                <div class="card-tag">Onboarding</div>
+                <div class="card-title">School onboarding — 12+ campuses, every one live</div>
+                <div class="card-desc">Alpha Miami, Santa Barbara, Palm Beach, Fort Worth, NextGen Academy, Waypoint Academy, Austin (virtual school split architecture for L1/L2/WL+LL), Brownsville, Immaculate Academy, ScienceSIS, Vita High School, and a public school summer camp cohort. Each onboarding required custom data mapping, name variant resolution across OneRoster, guide assignment configuration, and data quality investigation. Every school has distinct edge cases; every school is live.</div>
+            </div>
+
+            <div class="card">
+                <div class="card-tag">Reporting</div>
+                <div class="card-title">Custom PDF pipelines — 600+ reports, school-wide and per-student</div>
+                <div class="card-desc">End-of-year student reports generated individually per school, each containing MAP data, STAAR standards classification, and a mastered test breakdown — pulled directly from the OneRoster API. Gap analysis PDFs produced using Claude: wrong answers from failed tests are read, skill gaps identified, and actionable coaching recommendations formatted per student per subject. A weekly pipeline produces 600+ PDFs per run.</div>
+            </div>
+        </div>
+
+        <p class="section-heading">How I work</p>
+        <div class="work-list">
+            <div class="work-item">
+                <div class="work-num">01</div>
+                <div class="work-text"><strong>Data quality runs as a continuous process, not a one-time fix.</strong> 25+ OneRoster name variants documented and resolved across schools. MAP data reconciled across Fall and Winter cycles. Cross-enrollment and missing guide assignments detected and flagged. Every fix is a commit; nothing falls through.</div>
+            </div>
+            <div class="work-item">
+                <div class="work-num">03</div>
+                <div class="work-text"><strong>60+ file knowledge base built and maintained as institutional memory.</strong> Every project, system, API, policy, and person at Alpha is documented — so knowledge compounds instead of disappearing when context switches.</div>
+            </div>
+            <div class="work-item">
+                <div class="work-num">04</div>
+                <div class="work-text"><strong>No PM on the product — all of it owned.</strong> Product scoping, UX decisions, and stakeholder communication sit alongside the engineering. Requests from guides, coaches, and school admins are translated into shipped features.</div>
+            </div>
+            <div class="work-item">
+                <div class="work-num">05</div>
+                <div class="work-text"><strong>AI integration across every workflow.</strong> Claude Sonnet 4.6 powers gap analysis (failed questions → skill gaps → coaching recommendations), doom loop AI analysis, DRI recommendation generation with 18 few-shot examples, and a live-data BrainLift writer pulling real Miami stats. This isn't experimentation; it's in production use daily.</div>
+            </div>
+        </div>
+
+        <p class="section-heading">What's next</p>
+        <div class="next-grid">
+            <div class="next-card">
+                <div class="next-title">Shippable guide dashboard</div>
+                <div class="next-desc">A standalone, shareable view guides can open on any device — no login, no setup — showing their students' XP, progress, and alerts for the day. The infrastructure is in place; this is the next layer of reach.</div>
+            </div>
+            <div class="next-card">
+                <div class="next-title">Dashboard rollout organisation-wide</div>
+                <div class="next-desc">Expand access beyond the current school set to every Alpha campus. One platform, every school, consistent visibility into student progress across the whole organisation.</div>
+            </div>
+        </div>
+
+        <footer>
+            <p>More detail on any section available on request.</p>
+        </footer>
+    </main>
+</body>
+</html>
